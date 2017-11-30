@@ -12,7 +12,7 @@ I want to see the version numbers of all my used tools with one command.<br>
 <pre>
 This script. ;)<br>
 Actually following tools are listed (alphabetically):<br>
-* OS (Windows or macOS)
+* OS (Linux / Windows / macOS)
 * AngularCli
 * Bash
 * Docker
@@ -20,6 +20,7 @@ Actually following tools are listed (alphabetically):<br>
 * Gradle
 * Gulp
 * Java
+* Make
 * Maven
 * Npm
 * Node

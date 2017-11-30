@@ -19,6 +19,10 @@ FONT_NONE="\033[0m"
 line="###############################################"
 header="########## versions (alphabetically) ##########"
 
+isCommandAvailable () {
+  if command -v "$1" >/dev/null; then return 0 ; fi
+  return 1
+}
 isThisStringVersionNumber() {
    if [[ "${1}" =~ [0-9]+\.[0-9]+\.* ]] ; then return 0 ; fi
    return 1
@@ -44,17 +48,23 @@ getOsVersion() {
     echo "${os}"
   else
     # check if macos
-		os="$(echo $(system_profiler SPSoftwareDataType 2>&1 | grep -i 'System Version:' | tr -s " " | sed 's/System Version: //g' | cut -d " " -f 2,3))"
-		if [ "${os}" != "" ] ; then
+    os="$(echo $(system_profiler SPSoftwareDataType 2>&1 | grep -i 'System Version:' | tr -s " " | sed 's/System Version: //g' | cut -d " " -f 2,3))"
+    if [ "${os}" != "" ] ; then
       echo "${os}"
-		else
-      echo "-"
-		fi
-	fi
+    else
+      # check if linux
+      os="$(echo $(uname -a 2>&1 | grep -i 'Linux' | cut -d " " -f 1,3))"
+      if [ "${os}" != "" ] ; then
+        echo "${os}"
+      else
+        echo "-"
+      fi
+    fi
+  fi
 }
 printOsVersion() {
-	local os=$(getOsVersion)
-	if [ "${os}" != "-" ] ; then
+  local os=$(getOsVersion)
+  if [ "${os}" != "-" ] ; then
     printf "os:            "
     printf "${os}"
     printf "${BR}"
@@ -64,112 +74,147 @@ printOsVersion() {
 }
 
 printAngularCliVersion() {
-	local version=""
-	version="$(echo $(ng -v 2>&1 | grep -i 'Angular' | cut -d " " -f 3))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "angular cli:   "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "ng" ; then
+    version="$(echo $(ng -v | grep -i 'Angular' | cut -d " " -f 3))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "angular cli:   "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printBashVersion() {
-	local version=""
-	version="$(echo $(bash --version 2>&1 | grep -i 'bash' | cut -d " " -f 4))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "bash:          "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "bash" ; then
+    version="$(echo $(bash --version | grep -i 'bash' | cut -d " " -f 4))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "bash:          "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printDockerVersion() {
-	local version=""
-	version="$(echo $(docker -v 2>&1 | grep -i 'Docker version' | cut -d " " -f 3 | sed 's/\,/ /g'))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "docker:        "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "docker" ; then
+    version="$(echo $(docker -v | grep -i 'Docker version' | cut -d " " -f 3 | sed 's/\,/ /g'))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "docker:        "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printGitVersion() {
-	local version=""
-	version="$(echo $(git --version 2>&1 | cut -d " " -f 3))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "git:           "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "git" ; then
+    version="$(echo $(git --version | cut -d " " -f 3))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "git:           "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printGradleVersion() {
-	local version=""
-	version="$(echo $(gradle -v 2>&1 | grep -i 'Gradle' | cut -d " " -f 2))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "gradle:        "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "gradle" ; then
+    version="$(echo $(gradle -v | grep -i 'Gradle' | cut -d " " -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "gradle:        "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printGulpVersion() {
-	local version=""
-	version="$(echo $(gulp -v 2>&1 | grep -i 'CLI version' | cut -d " " -f 4))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "gulp:          "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "gulp" ; then
+    version="$(echo $(gulp -v | grep -i 'CLI version' | cut -d " " -f 4))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "gulp:          "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printJavaVersion() {
-	local version=""
-	version="$(echo $(java -version 2>&1 | grep -i 'version' | cut -d " " -f 3 | sed 's/\"/ /g'))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "java:          "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "java" ; then
+    version="$(echo $(java -version 2>&1 | grep -i 'version' | cut -d " " -f 3 | sed 's/\"/ /g'))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "java:          "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
+}
+printMakeVersion() {
+  local version=""
+  if isCommandAvailable "make" ; then
+    version="$(echo $(make -v | grep -i 'Make' | cut -d " " -f 3))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "make:          "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printMavenVersion() {
-	local version=""
-	version="$(echo $(mvn -v 2>&1 | grep -i 'Apache Maven' | cut -d " " -f 3))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "maven:         "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "mvn" ; then
+    version="$(echo $(mvn -v | grep -i 'Apache Maven' | cut -d " " -f 3))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "maven:         "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printNpmVersion() {
-	local version=""
-	version="$(echo $(npm -v))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "npm:           "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "npm" ; then
+    version="$(echo $(echo "npmversion" $(npm -v) | grep -i "npmversion" | cut -d " " -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "npm:           "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printNodeVersion() {
-	local version=""
-	version="$(echo $(node -v | cut -d "v" -f 2))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "node:          "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "node" ; then
+    version="$(echo $(node -v | cut -d "v" -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "node:          "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printSpringCliVersion() {
-	local version=""
-	version="$(echo $(spring --version 2>&1 | grep -i 'CLI' | cut -d " " -f 3 | cut -d "v" -f 2))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "spring cli:    "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "spring" ; then
+    version="$(echo $(spring --version | grep -i 'CLI' | cut -d " " -f 3 | cut -d "v" -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "spring cli:    "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 printZshVersion() {
-	local version=""
-	version="$(echo $(zsh --version 2>&1 | grep -i 'zsh' | cut -d " " -f 2))"
-	if isThisStringVersionNumber "${version}" ; then
-		printf "zsh:           "
-	  printf "${version}"
-	  printf "${BR}"
-	fi
+  local version=""
+  if isCommandAvailable "zsh" ; then
+    version="$(echo $(zsh --version | grep -i 'zsh' | cut -d " " -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "zsh:           "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
 }
 
 
@@ -183,6 +228,7 @@ printGitVersion
 printGradleVersion
 printGulpVersion
 printJavaVersion
+printMakeVersion
 printMavenVersion
 printNpmVersion
 printNodeVersion

@@ -13,19 +13,22 @@ I want to see the version numbers of all my used tools with one command.<br>
 This script. ;)<br>
 Actually following tools are listed (alphabetically):<br>
 * OS (Linux / Windows / macOS)
-* AngularCli
+* Angular CLI
+* Atom
 * Bash
+* CloudFoundry CLI
 * Docker
 * Git
 * Gradle
 * Gulp
+* Homebrew
 * Java
 * Make
 * Maven
 * Npm
 * Node
-* SpringCli
-* Zsh
+* Spring CLI
+* ZSH
 </pre>
 Screenshot macOS:<br>
 ![screenshot-macos](screen-macos.png "Screenshot macOS")

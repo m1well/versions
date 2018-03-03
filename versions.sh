@@ -16,8 +16,8 @@ FONT_CYAN="\033[0;96m"
 FONT_NONE="\033[0m"
 
 ### output ###
-line="###############################################"
-header="########## versions (alphabetically) ##########"
+line="#######################################################"
+header="############## versions (alphabetically) ##############"
 
 isCommandAvailable () {
   if command -v "$1" >/dev/null; then return 0 ; fi
@@ -65,10 +65,10 @@ getOsVersion() {
 printOsVersion() {
   local os=$(getOsVersion)
   if [ "${os}" != "-" ] ; then
-    printf "os:            "
+    printf "os:                   "
     printf "${os}"
     printf "${BR}"
-    printf "# -----------------------------------"
+    printf "# --------------------------------------------------"
     printf "${BR}"
   fi
 }
@@ -84,12 +84,34 @@ printAngularCliVersion() {
     fi
   fi
 }
+printAtomVersion() {
+  local version=""
+  if isCommandAvailable "atom" ; then
+    version="$(echo $(atom -v | grep -i 'Atom   ' | tr -s " " | cut -d ":" -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "atom:                 "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
+}
 printBashVersion() {
   local version=""
   if isCommandAvailable "bash" ; then
     version="$(echo $(bash --version | grep -i 'bash' | cut -d " " -f 4))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "bash:          "
+      printf "bash:                 "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
+}
+printCloudFoundryCliVersion() {
+  local version=""
+  if isCommandAvailable "cf" ; then
+    version="$(echo $(cf -v | grep -i 'cf version' | cut -d " " -f 3))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "cloundfoundry cli:    "
       printf "${version}"
       printf "${BR}"
     fi
@@ -100,7 +122,7 @@ printDockerVersion() {
   if isCommandAvailable "docker" ; then
     version="$(echo $(docker -v | grep -i 'Docker version' | cut -d " " -f 3 | sed 's/\,/ /g'))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "docker:        "
+      printf "docker:               "
       printf "${version}"
       printf "${BR}"
     fi
@@ -111,7 +133,7 @@ printGitVersion() {
   if isCommandAvailable "git" ; then
     version="$(echo $(git --version | cut -d " " -f 3))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "git:           "
+      printf "git:                  "
       printf "${version}"
       printf "${BR}"
     fi
@@ -122,7 +144,7 @@ printGradleVersion() {
   if isCommandAvailable "gradle" ; then
     version="$(echo $(gradle -v | grep -i 'Gradle' | cut -d " " -f 2))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "gradle:        "
+      printf "gradle:               "
       printf "${version}"
       printf "${BR}"
     fi
@@ -133,7 +155,18 @@ printGulpVersion() {
   if isCommandAvailable "gulp" ; then
     version="$(echo $(gulp -v | grep -i 'CLI version' | cut -d " " -f 4))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "gulp:          "
+      printf "gulp:                 "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
+}
+printHomebrewVersion() {
+  local version=""
+  if isCommandAvailable "brew" ; then
+    version="$(echo $(brew -v | grep -i 'Homebrew ' | cut -d " " -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "Homebrew:             "
       printf "${version}"
       printf "${BR}"
     fi
@@ -144,7 +177,7 @@ printJavaVersion() {
   if isCommandAvailable "java" ; then
     version="$(echo $(java -version 2>&1 | grep -i 'version' | cut -d " " -f 3 | sed 's/\"/ /g'))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "java:          "
+      printf "java:                 "
       printf "${version}"
       printf "${BR}"
     fi
@@ -155,7 +188,7 @@ printMakeVersion() {
   if isCommandAvailable "make" ; then
     version="$(echo $(make -v | grep -i 'Make' | cut -d " " -f 3))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "make:          "
+      printf "make:                 "
       printf "${version}"
       printf "${BR}"
     fi
@@ -166,7 +199,7 @@ printMavenVersion() {
   if isCommandAvailable "mvn" ; then
     version="$(echo $(mvn -v | grep -i 'Apache Maven' | cut -d " " -f 3))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "maven:         "
+      printf "maven:                "
       printf "${version}"
       printf "${BR}"
     fi
@@ -177,7 +210,7 @@ printNpmVersion() {
   if isCommandAvailable "npm" ; then
     version="$(echo $(echo "npmversion" $(npm -v) | grep -i "npmversion" | cut -d " " -f 2))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "npm:           "
+      printf "npm:                  "
       printf "${version}"
       printf "${BR}"
     fi
@@ -188,7 +221,7 @@ printNodeVersion() {
   if isCommandAvailable "node" ; then
     version="$(echo $(node -v | cut -d "v" -f 2))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "node:          "
+      printf "node:                 "
       printf "${version}"
       printf "${BR}"
     fi
@@ -199,7 +232,7 @@ printSpringCliVersion() {
   if isCommandAvailable "spring" ; then
     version="$(echo $(spring --version | grep -i 'CLI' | cut -d " " -f 3 | cut -d "v" -f 2))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "spring cli:    "
+      printf "spring cli:           "
       printf "${version}"
       printf "${BR}"
     fi
@@ -210,7 +243,7 @@ printZshVersion() {
   if isCommandAvailable "zsh" ; then
     version="$(echo $(zsh --version | grep -i 'zsh' | cut -d " " -f 2))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "zsh:           "
+      printf "zsh:                  "
       printf "${version}"
       printf "${BR}"
     fi
@@ -222,11 +255,14 @@ printZshVersion() {
 printStartLines
 printOsVersion
 printAngularCliVersion
+printAtomVersion
 printBashVersion
+printCloudFoundryCliVersion
 printDockerVersion
 printGitVersion
 printGradleVersion
 printGulpVersion
+printHomebrewVersion
 printJavaVersion
 printMakeVersion
 printMavenVersion

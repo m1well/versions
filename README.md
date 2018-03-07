@@ -28,7 +28,8 @@ Actually following tools are listed (alphabetically):<br>
 * Maven
 * Npm
 * Node
-* Spring CLI
+* Ruby
+* SpringBoot CLI
 * Yarn
 * Yeoman
 * ZSH
@@ -37,9 +38,6 @@ Actually following tools are listed (alphabetically):<br>
 Screenshot macOS:<br>
 ![screenshot-macos](screen-macos.png "Screenshot macOS")
 <br>
-<br>
-Screenshot Windows:<br>
-![screenshot-windows](screen-windows.png "Screenshot Windows")
 
 
 ## Usage

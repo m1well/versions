@@ -23,12 +23,16 @@ Actually following tools are listed (alphabetically):<br>
 * Gulp
 * Homebrew
 * Java
+* JHipster
 * Make
 * Maven
 * Npm
 * Node
 * Spring CLI
+* Yarn
+* Yeoman
 * ZSH
+
 </pre>
 Screenshot macOS:<br>
 ![screenshot-macos](screen-macos.png "Screenshot macOS")

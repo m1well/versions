@@ -4,21 +4,18 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20171130
+#date of last change    :20180307
 #version                :1.0.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
-
 ### colors and linebreak ###
 BR="\n"
 FONT_CYAN="\033[0;96m"
 FONT_NONE="\033[0m"
-
 ### output ###
 line="#######################################################"
 header="############## versions (alphabetically) ##############"
-
 isCommandAvailable () {
   if command -v "$1" >/dev/null; then return 0 ; fi
   return 1
@@ -39,7 +36,6 @@ printEndLines() {
   printf "${line}${BR}"
   printf "${FONT_NONE}"
 }
-
 getOsVersion() {
   local os=""
   # check if windows
@@ -72,13 +68,12 @@ printOsVersion() {
     printf "${BR}"
   fi
 }
-
 printAngularCliVersion() {
   local version=""
   if isCommandAvailable "ng" ; then
     version="$(echo $(ng -v | grep -i 'Angular' | cut -d " " -f 3))"
     if isThisStringVersionNumber "${version}" ; then
-      printf "angular cli:   "
+      printf "angular cli:          "
       printf "${version}"
       printf "${BR}"
     fi
@@ -183,6 +178,17 @@ printJavaVersion() {
     fi
   fi
 }
+printJHipsterVersion() {
+  local version=""
+  if isCommandAvailable "jhipster" ; then
+    version="$(echo $(jhipster --version | cut -d " " -f 6))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "jhipster:             "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
+}
 printMakeVersion() {
   local version=""
   if isCommandAvailable "make" ; then
@@ -238,6 +244,28 @@ printSpringCliVersion() {
     fi
   fi
 }
+printYarnVersion() {
+  local version=""
+  if isCommandAvailable "yarn" ; then
+    version="$(echo $(yarn -v | cut -d "v" -f 2))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "yarn:                 "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
+}
+printYeomanVersion() {
+  local version=""
+  if isCommandAvailable "yo" ; then
+    version="$(echo $(yo --version))"
+    if isThisStringVersionNumber "${version}" ; then
+      printf "yeoman:               "
+      printf "${version}"
+      printf "${BR}"
+    fi
+  fi
+}
 printZshVersion() {
   local version=""
   if isCommandAvailable "zsh" ; then
@@ -249,7 +277,6 @@ printZshVersion() {
     fi
   fi
 }
-
 
 ### start of script ###
 printStartLines
@@ -264,11 +291,14 @@ printGradleVersion
 printGulpVersion
 printHomebrewVersion
 printJavaVersion
+printJHipsterVersion
 printMakeVersion
 printMavenVersion
 printNpmVersion
 printNodeVersion
 printSpringCliVersion
+printYarnVersion
+printYeomanVersion
 printZshVersion
 printEndLines
 

@@ -20,6 +20,7 @@ Actually following tools are listed (alphabetically):<br>
 * Docker
 * Git
 * Gradle
+* Groovy
 * Gulp
 * Homebrew
 * Java

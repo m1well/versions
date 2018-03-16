@@ -139,6 +139,13 @@ getGradleVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getGroovyVersion() {
+  local tool="groovy"
+  if isCommandAvailable "groovy" ; then
+    version="$(echo $(groovy -v | cut -d " " -f 3))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getGulpVersion() {
   local tool="gulp"
   if isCommandAvailable "gulp" ; then
@@ -241,6 +248,7 @@ getCloudFoundryCliVersion
 getDockerVersion
 getGitVersion
 getGradleVersion
+getGroovyVersion
 getGulpVersion
 getHomebrewVersion
 getJavaVersion

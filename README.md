@@ -19,6 +19,7 @@ Actually following tools are listed (alphabetically):<br>
 * CloudFoundry CLI
 * Docker
 * Git
+* Google Cloud SDK
 * Gradle
 * Groovy
 * Gulp

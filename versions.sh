@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20180307
-#version                :2.0.0
+#date of last change    :20180421
+#version                :2.0.1
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -132,6 +132,13 @@ getGitVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getGoogleCloudSdkVersion() {
+  local tool="google cloud sdk"
+  if isCommandAvailable "gcloud" ; then
+    version="$(echo $(gcloud version | grep -i 'Google Cloud SDK' | cut -d " " -f 4))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getGradleVersion() {
   local tool="gradle"
   if isCommandAvailable "gradle" ; then
@@ -247,6 +254,7 @@ getBashVersion
 getCloudFoundryCliVersion
 getDockerVersion
 getGitVersion
+getGoogleCloudSdkVersion
 getGradleVersion
 getGroovyVersion
 getGulpVersion

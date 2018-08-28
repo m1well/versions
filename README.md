@@ -28,10 +28,12 @@ Actually following tools are listed (alphabetically):<br>
 * JHipster
 * Make
 * Maven
-* Npm
 * Node
+* Npm
 * Ruby
 * SpringBoot CLI
+* VueJS
+* Vue CLI
 * Yarn
 * Yeoman
 * ZSH
@@ -62,5 +64,5 @@ Thank you.<br>
 
 
 ## Copyright and License
-Copyright :copyright: 2017 Michael Wellner ([@m1well](http://www.twitter.m1well.de))<br>
+Copyright :copyright: 2018 Michael Wellner ([@m1well](http://www.twitter.m1well.de))<br>
 Code released under the [MIT License](/LICENSE).<br>

@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20180421
-#version                :2.0.1
+#date of last change    :20180828
+#version                :2.1.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -195,17 +195,17 @@ getMavenVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
-getNpmVersion() {
-  local tool="npm"
-  if isCommandAvailable "npm" ; then
-    version="$(echo $(echo "npmversion" $(npm -v) | grep -i "npmversion" | cut -d " " -f 2))"
-    printToolVersion "${tool}" "${version}"
-  fi
-}
 getNodeVersion() {
   local tool="node"
   if isCommandAvailable "node" ; then
     version="$(echo $(node -v | cut -d "v" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
+getNpmVersion() {
+  local tool="npm"
+  if isCommandAvailable "npm" ; then
+    version="$(echo $(echo "npmversion" $(npm -v) | grep -i "npmversion" | cut -d " " -f 2))"
     printToolVersion "${tool}" "${version}"
   fi
 }
@@ -220,6 +220,20 @@ getSpringBootCliVersion() {
   local tool="springboot cli"
   if isCommandAvailable "spring" ; then
     version="$(echo $(spring --version | grep -i 'CLI' | cut -d " " -f 3 | cut -d "v" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
+getVueVersion() {
+  local tool="vuejs"
+  if isCommandAvailable "npm" ; then
+    version="$(echo $(npm list vue | grep -i 'vue@' | cut -d "@" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
+getVueCliVersion() {
+  local tool="vue cli"
+  if isCommandAvailable "vue" ; then
+    version="$(echo $(vue --version))"
     printToolVersion "${tool}" "${version}"
   fi
 }
@@ -263,10 +277,12 @@ getJavaVersion
 getJHipsterVersion
 getMakeVersion
 getMavenVersion
-getNpmVersion
 getNodeVersion
-getSpringBootCliVersion
+getNpmVersion
 getRubyVersion
+getSpringBootCliVersion
+getVueVersion
+getVueCliVersion
 getYarnVersion
 getYeomanVersion
 getZshVersion

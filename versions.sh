@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20180828
-#version                :2.1.0
+#date of last change    :20181011
+#version                :2.2.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###

@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20180828
-#version                :2.1.0
+#date of last change    :20181011
+#version                :2.2.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -118,6 +118,13 @@ getCloudFoundryCliVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getCurlVersion() {
+  local tool="curl"
+  if isCommandAvailable "curl" ; then
+    version="$(echo $(curl -V | grep -i 'curl '  | cut -d " " -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getDockerVersion() {
   local tool="docker"
   if isCommandAvailable "docker" ; then
@@ -178,6 +185,13 @@ getJHipsterVersion() {
   local tool="jhipster"
   if isCommandAvailable "jhipster" ; then
     version="$(echo $(jhipster --version | cut -d " " -f 6))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
+getJqVersion() {
+  local tool="jq"
+  if isCommandAvailable "jq" ; then
+    version="$(echo $(jq --version | cut -d "-" -f 2))"
     printToolVersion "${tool}" "${version}"
   fi
 }
@@ -266,6 +280,7 @@ getAngularCliVersion
 getAtomVersion
 getBashVersion
 getCloudFoundryCliVersion
+getCurlVersion
 getDockerVersion
 getGitVersion
 getGoogleCloudSdkVersion
@@ -275,6 +290,7 @@ getGulpVersion
 getHomebrewVersion
 getJavaVersion
 getJHipsterVersion
+getJqVersion
 getMakeVersion
 getMavenVersion
 getNodeVersion

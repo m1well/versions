@@ -17,6 +17,7 @@ Actually following tools are listed (alphabetically):<br>
 * Atom
 * Bash
 * CloudFoundry CLI
+* Curl
 * Docker
 * Git
 * Google Cloud SDK
@@ -26,6 +27,7 @@ Actually following tools are listed (alphabetically):<br>
 * Homebrew
 * Java
 * JHipster
+* Jq
 * Make
 * Maven
 * Node

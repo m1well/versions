@@ -104,6 +104,13 @@ getAtomVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getAwsCliVersion() {
+  local tool="aws cli"
+  if isCommandAvailable "aws" ; then
+    version="$(echo $(aws --version | cut -d " " -f 1 | cut -d "/" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getBashVersion() {
   local tool="bash"
   if isCommandAvailable "bash" ; then
@@ -195,6 +202,13 @@ getJqVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getKubectlClientVersion() {
+  local tool="kubectl client"
+  if isCommandAvailable "kubectl" ; then
+    version="$(echo $(kubectl version --client | cut -d ":" -f 5 | cut -d "," -f 1 | sed 's/\"//g' | cut -d "v" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getMakeVersion() {
   local tool="make"
   if isCommandAvailable "make" ; then
@@ -209,6 +223,13 @@ getMavenVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getMinikubeVersion() {
+  local tool="minikube"
+  if isCommandAvailable "minikube" ; then
+    version="$(echo $(minikube version | cut -d " " -f 3 | cut -d "v" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getNodeVersion() {
   local tool="node"
   if isCommandAvailable "node" ; then
@@ -219,7 +240,14 @@ getNodeVersion() {
 getNpmVersion() {
   local tool="npm"
   if isCommandAvailable "npm" ; then
-    version="$(echo $(echo "npmversion" $(npm -v) | grep -i "npmversion" | cut -d " " -f 2))"
+    version="$(echo $(npm -v))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
+getPythonVersion() {
+  local tool="python"
+  if isCommandAvailable "python" ; then
+    version="$(echo "$(python -V 2>&1)" | cut -d " " -f 2)"
     printToolVersion "${tool}" "${version}"
   fi
 }
@@ -234,6 +262,13 @@ getSpringBootCliVersion() {
   local tool="springboot cli"
   if isCommandAvailable "spring" ; then
     version="$(echo $(spring --version | grep -i 'CLI' | cut -d " " -f 3 | cut -d "v" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
+getTerraformVersion() {
+  local tool="terraform"
+  if isCommandAvailable "terraform" ; then
+    version="$(echo $(terraform version | cut -d " " -f 3 | cut -d "v" -f 2))"
     printToolVersion "${tool}" "${version}"
   fi
 }
@@ -278,6 +313,7 @@ printStartLines
 getOsVersion
 getAngularCliVersion
 getAtomVersion
+getAwsCliVersion
 getBashVersion
 getCloudFoundryCliVersion
 getCurlVersion
@@ -291,12 +327,16 @@ getHomebrewVersion
 getJavaVersion
 getJHipsterVersion
 getJqVersion
+getKubectlClientVersion
 getMakeVersion
 getMavenVersion
+getMinikubeVersion
 getNodeVersion
 getNpmVersion
+getPythonVersion
 getRubyVersion
 getSpringBootCliVersion
+getTerraformVersion
 getVueVersion
 getVueCliVersion
 getYarnVersion

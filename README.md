@@ -15,6 +15,7 @@ Actually following tools are listed (alphabetically):<br>
 * OS (Linux / Windows / macOS)
 * Angular CLI
 * Atom
+* AWS CLI
 * Bash
 * CloudFoundry CLI
 * Curl
@@ -28,12 +29,16 @@ Actually following tools are listed (alphabetically):<br>
 * Java
 * JHipster
 * Jq
+* Kubectl Client
 * Make
 * Maven
+* Minikube
 * Node
 * Npm
+* Python
 * Ruby
 * SpringBoot CLI
+* Terraform
 * VueJS
 * Vue CLI
 * Yarn

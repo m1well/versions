@@ -97,6 +97,13 @@ getAngularCliVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getApacheBenchVersion() {
+  local tool="apache bench"
+  if isCommandAvailable "ab" ; then
+    version="$(echo $(ab -V | grep ApacheBench | cut -d " " -f 5))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getAtomVersion() {
   local tool="atom"
   if isCommandAvailable "atom" ; then
@@ -312,6 +319,7 @@ getZshVersion() {
 printStartLines
 getOsVersion
 getAngularCliVersion
+getApacheBenchVersion
 getAtomVersion
 getAwsCliVersion
 getBashVersion

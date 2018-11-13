@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20181011
-#version                :2.2.0
+#date of last change    :20181113
+#version                :2.3.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -279,6 +279,13 @@ getTerraformVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getVimVersion() {
+  local tool="vim"
+  if isCommandAvailable "vim" ; then
+    version="$(echo $(vim --version | grep -i 'Vi IMproved' | cut -d " " -f 5))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getVueVersion() {
   local tool="vuejs"
   if isCommandAvailable "npm" ; then
@@ -345,6 +352,7 @@ getPythonVersion
 getRubyVersion
 getSpringBootCliVersion
 getTerraformVersion
+getVimVersion
 getVueVersion
 getVueCliVersion
 getYarnVersion

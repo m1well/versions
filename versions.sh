@@ -237,6 +237,13 @@ getMinikubeVersion() {
     printToolVersion "${tool}" "${version}"
   fi
 }
+getMongoDbVersion() {
+  local tool="mongodb"
+  if isCommandAvailable "mongo" ; then
+    version="$(echo $(mongo -version | grep -i "MongoDB" | cut -d " " -f 4 | cut -d "v" -f 2))"
+    printToolVersion "${tool}" "${version}"
+  fi
+}
 getNodeVersion() {
   local tool="node"
   if isCommandAvailable "node" ; then
@@ -346,6 +353,7 @@ getKubectlClientVersion
 getMakeVersion
 getMavenVersion
 getMinikubeVersion
+getMongoDbVersion
 getNodeVersion
 getNpmVersion
 getPythonVersion

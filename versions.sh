@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20181126
-#version                :2.3.0
+#date of last change    :20181130
+#version                :2.4.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -200,6 +200,11 @@ getMongoDbVersion() {
     printToolVersion "${1}" "$(echo $(mongo -version | grep -i "MongoDB" | cut -d " " -f 4 | cut -d "v" -f 2))"
   fi
 }
+getNewmanVersion() {
+  if isCommandAvailable "newman" ; then
+    printToolVersion "${1}" "$(echo $(newman --version))"
+  fi
+}
 getNodeVersion() {
   if isCommandAvailable "node" ; then
     printToolVersion "${1}" "$(echo $(node -v | cut -d "v" -f 2))"
@@ -286,6 +291,7 @@ getMakeVersion "make"
 getMavenVersion "maven"
 getMinikubeVersion "minikube"
 getMongoDbVersion "mongodb"
+getNewmanVersion "newman"
 getNodeVersion "node"
 getNpmVersion "npm"
 getPythonVersion "python"

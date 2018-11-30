@@ -35,6 +35,7 @@ Actually following tools are listed (alphabetically):<br>
 * Maven
 * Minikube
 * MongoDB
+* Newman
 * Node
 * Npm
 * Python

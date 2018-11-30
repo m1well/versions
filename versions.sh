@@ -14,9 +14,9 @@
 BR="\n"
 FONT_CYAN="\033[0;96m"
 FONT_NONE="\033[0m"
-TAB=24
-LINE="#######################################################"
-HEADER="############## versions (alphabetically) ##############"
+TAB=22
+LINE="#############################################################"
+HEADER="################# versions (alphabetically) #################"
 
 ### helper ###
 isCommandAvailable () {
@@ -43,25 +43,25 @@ printEndLines() {
 ### print versions ###
 printOsVersion() {
   if [ "${1}" != "-" ] ; then
-    printf "${1}:"
-    spaces=$((${TAB}-${#1}))
+    printf " - ${1} <"
+    spaces=$((${TAB}-${#1}-1))
     for (( c=1; c<=${spaces}; c++ )); do
-      printf " "
+      printf "-"
     done
-    printf "${2}"
+    printf "> ${2}"
     printf "${BR}"
-    printf "# -----------------------------------------------------"
+    printf " -----------------------------------------------------------"
     printf "${BR}"
   fi
 }
 printToolVersion() {
   if isThisStringVersionNumber "${2}" ; then
-    printf "${1}:"
-    spaces=$((${TAB}-${#1}))
+    printf " - ${1} <"
+    spaces=$((${TAB}-${#1}-1))
     for (( c=1; c<=${spaces}; c++ )); do
-      printf " "
+      printf "-"
     done
-    printf "${2}"
+    printf "> ${2} -"
     printf "${BR}"
   fi
 }

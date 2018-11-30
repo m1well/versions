@@ -215,6 +215,11 @@ getNpmVersion() {
     printToolVersion "${1}" "$(echo $(npm -v))"
   fi
 }
+getPostgreSQLVersion() {
+  if isCommandAvailable "psql" ; then
+    printToolVersion "${1}" "$(psql --version | cut -d " " -f 3)"
+  fi
+}
 getPythonVersion() {
   if isCommandAvailable "python" ; then
     printToolVersion "${1}" "$(echo "$(python -V 2>&1)" | cut -d " " -f 2)"
@@ -274,7 +279,7 @@ getApacheBenchVersion "apache bench"
 getAtomVersion "atom"
 getAwsCliVersion "aws cli"
 getBashVersion "bash"
-getCloudFoundryCliVersion "cloundfoundry cli"
+getCloudFoundryCliVersion "cloudfoundry cli"
 getCurlVersion "curl"
 getDockerVersion "docker"
 getGitVersion "git"
@@ -294,6 +299,7 @@ getMongoDbVersion "mongodb"
 getNewmanVersion "newman"
 getNodeVersion "node"
 getNpmVersion "npm"
+getPostgreSQLVersion "postgresql"
 getPythonVersion "python"
 getRubyVersion "ruby"
 getSpringBootCliVersion "springboot cli"

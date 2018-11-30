@@ -38,6 +38,7 @@ Actually following tools are listed (alphabetically):<br>
 * Newman
 * Node
 * Npm
+* PostgreSQL
 * Python
 * Ruby
 * SpringBoot CLI

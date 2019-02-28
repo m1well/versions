@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20181130
-#version                :2.4.0
+#date of last change    :20190227
+#version                :2.4.1
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -48,7 +48,7 @@ printOsVersion() {
     for (( c=1; c<=${spaces}; c++ )); do
       printf "-"
     done
-    printf "> ${2}"
+    printf "> ${2} -"
     printf "${BR}"
     printf " -----------------------------------------------------------"
     printf "${BR}"

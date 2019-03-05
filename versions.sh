@@ -4,11 +4,13 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20190227
-#version                :2.4.1
+#date of last change    :20190305
+#version                :2.4.2
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
+
+set -eu
 
 ### constants ###
 BR="\n"
@@ -20,7 +22,7 @@ HEADER="################# versions (alphabetically) #################"
 
 ### helper ###
 isCommandAvailable () {
-  if command -v "$1" >/dev/null; then return 0 ; fi
+  if command -v "${1}" >/dev/null; then return 0 ; fi
   return 1
 }
 isThisStringVersionNumber() {

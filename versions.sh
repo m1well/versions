@@ -94,7 +94,7 @@ getOsVersion() {
 }
 getAngularCliVersion() {
   if isCommandAvailable "ng" ; then
-    printToolVersion "${1}" "$(echo $(ng -v | grep -i 'Angular' | cut -d " " -f 3))"
+    printToolVersion "${1}" "$(echo $(ng --version | grep -i 'Angular CLI' | cut -d " " -f 3))"
   fi
 }
 getApacheBenchVersion() {

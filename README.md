@@ -43,6 +43,7 @@ Actually following tools are listed (alphabetically):<br>
 * Ruby
 * SpringBoot CLI
 * Terraform
+* TypeScript
 * Vim
 * VueJS
 * Vue CLI

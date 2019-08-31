@@ -242,6 +242,11 @@ getTerraformVersion() {
     printToolVersion "${1}" "$(echo $(terraform version | cut -d " " -f 3 | cut -d "v" -f 2))"
   fi
 }
+getTypescriptVersion() {
+  if isCommandAvailable "tsc" ; then
+    printToolVersion "${1}" "$(echo $(tsc -v | cut -d " " -f 2))"
+  fi
+}
 getVimVersion() {
   if isCommandAvailable "vim" ; then
     printToolVersion "${1}" "$(echo $(vim --version | grep -i 'Vi IMproved' | cut -d " " -f 5))"
@@ -306,6 +311,7 @@ getPythonVersion "python"
 getRubyVersion "ruby"
 getSpringBootCliVersion "springboot cli"
 getTerraformVersion "terraform"
+getTypescriptVersion "typescript"
 getVimVersion "vim"
 getVueVersion "vuejs"
 getVueCliVersion "vue cli"

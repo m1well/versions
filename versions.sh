@@ -22,7 +22,7 @@ HEADER="################# versions (alphabetically) #################"
 
 ### helper ###
 isCommandAvailable () {
-  if command -v "${1}" >/dev/null; then return 0 ; fi
+  if [[ -x "$(command -v ${1})" ]] ; then return 0 ; fi
   return 1
 }
 isThisStringVersionNumber() {

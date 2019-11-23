@@ -157,6 +157,11 @@ getGulpVersion() {
     printToolVersion "${1}" "$(echo $(gulp -v | grep -i 'CLI version' | cut -d " " -f 4))"
   fi
 }
+getHerokuVersion() {
+  if isCommandAvailable "heroku" ; then
+    printToolVersion "${1}" "$(echo $(heroku -v | cut -d "/" -f 2 | cut -d " " -f 1))"
+  fi
+}
 getHomebrewVersion() {
   if isCommandAvailable "brew" ; then
     printToolVersion "${1}" "$(echo $(brew -v | grep -i 'Homebrew ' | cut -d " " -f 2))"
@@ -294,6 +299,7 @@ getGoogleCloudSdkVersion "google cloud sdk"
 getGradleVersion "gradle"
 getGroovyVersion "groovy"
 getGulpVersion "gulp"
+getHerokuVersion "heroku"
 getHomebrewVersion "homebrew"
 getJavaVersion "java"
 getJHipsterVersion "jhipster"

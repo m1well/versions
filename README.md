@@ -26,6 +26,7 @@ Actually following tools are listed (alphabetically):<br>
 * Gradle
 * Groovy
 * Gulp
+* Heroku
 * Homebrew
 * Java
 * JHipster

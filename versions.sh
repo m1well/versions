@@ -26,7 +26,11 @@ isCommandAvailable () {
   return 1
 }
 isThisStringVersionNumber() {
-   if [[ "${1}" =~ [0-9]+\.[0-9]+\.* ]] ; then return 0 ; fi
+   if [[ "${1}" =~ [0-9]+\.[0-9]+\.* ]] ; then
+     return 0
+   elif [[ "${1}" =~ [0-9] ]] ; then
+     return 0
+   fi
    return 1
 }
 printStartLines() {
@@ -130,6 +134,11 @@ getCurlVersion() {
 getDockerVersion() {
   if isCommandAvailable "docker" ; then
     printToolVersion "${1}" "$(echo $(docker -v | grep -i 'Docker version' | cut -d " " -f 3 | sed 's/\,/ /g'))"
+  fi
+}
+getForkVersion() {
+  if isCommandAvailable "fork" ; then
+    printToolVersion "${1}" "$(echo $(fork --version))"
   fi
 }
 getGitVersion() {
@@ -294,6 +303,7 @@ getBashVersion "bash"
 getCloudFoundryCliVersion "cloudfoundry cli"
 getCurlVersion "curl"
 getDockerVersion "docker"
+getForkVersion "fork"
 getGitVersion "git"
 getGoogleCloudSdkVersion "google cloud sdk"
 getGradleVersion "gradle"

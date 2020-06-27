@@ -98,82 +98,82 @@ getOsVersion() {
 }
 getAngularCliVersion() {
   if isCommandAvailable "ng" ; then
-    printToolVersion "${1}" "$(echo $(ng --version | grep -i 'Angular CLI' | cut -d " " -f 3))"
+    printToolVersion "${1}" "$(echo $(ng --version 2>&1 | grep -i 'Angular CLI' | cut -d " " -f 3))"
   fi
 }
 getApacheBenchVersion() {
   if isCommandAvailable "ab" ; then
-    printToolVersion "${1}" "$(echo $(ab -V | grep ApacheBench | cut -d " " -f 5))"
+    printToolVersion "${1}" "$(echo $(ab -V 2>&1 | grep ApacheBench | cut -d " " -f 5))"
   fi
 }
 getAtomVersion() {
   if isCommandAvailable "atom" ; then
-    printToolVersion "${1}" "$(echo $(atom -v | grep -i 'Atom   ' | tr -s " " | cut -d ":" -f 2))"
+    printToolVersion "${1}" "$(echo $(atom -v 2>&1 | grep -i 'Atom   ' | tr -s " " | cut -d ":" -f 2))"
   fi
 }
 getAwsCliVersion() {
   if isCommandAvailable "aws" ; then
-    printToolVersion "${1}" "$(echo $(aws --version | cut -d " " -f 1 | cut -d "/" -f 2))"
+    printToolVersion "${1}" "$(echo $(aws --version 2>&1 | cut -d " " -f 1 | cut -d "/" -f 2))"
   fi
 }
 getBashVersion() {
   if isCommandAvailable "bash" ; then
-    printToolVersion "${1}" "$(echo $(bash --version | grep -i 'bash' | cut -d " " -f 4))"
+    printToolVersion "${1}" "$(echo $(bash --version 2>&1 | grep -i 'bash' | cut -d " " -f 4))"
   fi
 }
 getCloudFoundryCliVersion() {
   if isCommandAvailable "cf" ; then
-    printToolVersion "${1}" "$(echo $(cf -v | grep -i 'cf version' | cut -d " " -f 3))"
+    printToolVersion "${1}" "$(echo $(cf -v 2>&1 | grep -i 'cf version' | cut -d " " -f 3))"
   fi
 }
 getCurlVersion() {
   if isCommandAvailable "curl" ; then
-    printToolVersion "${1}" "$(echo $(curl -V | grep -i 'curl '  | cut -d " " -f 2))"
+    printToolVersion "${1}" "$(echo $(curl -V 2>&1 | grep -i 'curl ' | cut -d " " -f 2))"
   fi
 }
 getDockerVersion() {
   if isCommandAvailable "docker" ; then
-    printToolVersion "${1}" "$(echo $(docker -v | grep -i 'Docker version' | cut -d " " -f 3 | sed 's/\,/ /g'))"
+    printToolVersion "${1}" "$(echo $(docker -v 2>&1 | grep -i 'Docker version' | cut -d " " -f 3 | sed 's/\,/ /g'))"
   fi
 }
 getForkVersion() {
   if isCommandAvailable "fork" ; then
-    printToolVersion "${1}" "$(echo $(fork --version))"
+    printToolVersion "${1}" "$(echo $(fork --version 2>&1))"
   fi
 }
 getGitVersion() {
   if isCommandAvailable "git" ; then
-    printToolVersion "${1}" "$(echo $(git --version | cut -d " " -f 3))"
+    printToolVersion "${1}" "$(echo $(git --version 2>&1 | cut -d " " -f 3))"
   fi
 }
 getGoogleCloudSdkVersion() {
   if isCommandAvailable "gcloud" ; then
-    printToolVersion "${1}" "$(echo $(gcloud version | grep -i 'Google Cloud SDK' | cut -d " " -f 4))"
+    printToolVersion "${1}" "$(echo $(gcloud version 2>&1 | grep -i 'Google Cloud SDK' | cut -d " " -f 4))"
   fi
 }
 getGradleVersion() {
   if isCommandAvailable "gradle" ; then
-    printToolVersion "${1}" "$(echo $(gradle -v | grep -i 'Gradle' | cut -d " " -f 2))"
+    printToolVersion "${1}" "$(echo $(gradle -v 2>&1 | grep -i 'Gradle' | cut -d " " -f 2))"
   fi
 }
 getGroovyVersion() {
   if isCommandAvailable "groovy" ; then
-    printToolVersion "${1}" "$(echo $(groovy -v | cut -d " " -f 3))"
+    printToolVersion "${1}" "$(echo $(groovy -v 2>&1 | cut -d " " -f 3))"
   fi
 }
 getGulpVersion() {
   if isCommandAvailable "gulp" ; then
-    printToolVersion "${1}" "$(echo $(gulp -v | grep -i 'CLI version' | cut -d " " -f 4))"
+    printToolVersion "${1}" "$(echo $(gulp -v 2>&1 | grep -i 'CLI version' | cut -d " " -f 4))"
   fi
 }
 getHerokuVersion() {
   if isCommandAvailable "heroku" ; then
-    printToolVersion "${1}" "$(echo $(heroku -v | cut -d "/" -f 2 | cut -d " " -f 1))"
+    printToolVersion "${1}" "$(echo $(heroku -v 2>&1 | cut -d "/" -f 2 | cut -d " " -f 1))"
   fi
 }
 getHomebrewVersion() {
   if isCommandAvailable "brew" ; then
-    printToolVersion "${1}" "$(echo $(brew -v | grep -i 'Homebrew ' | cut -d " " -f 2))"
+    printToolVersion "${1}" "$(echo $(brew -v 2>&1 | grep -i 'Homebrew ' | cut -d " " -f 2))"
   fi
 }
 getJavaVersion() {
@@ -183,57 +183,57 @@ getJavaVersion() {
 }
 getJHipsterVersion() {
   if isCommandAvailable "jhipster" ; then
-    printToolVersion "${1}" "$(echo $(jhipster --version | cut -d " " -f 6))"
+    printToolVersion "${1}" "$(echo $(jhipster --version 2>&1 | cut -d " " -f 6))"
   fi
 }
 getJqVersion() {
   if isCommandAvailable "jq" ; then
-    printToolVersion "${1}" "$(echo $(jq --version | cut -d "-" -f 2))"
+    printToolVersion "${1}" "$(echo $(jq --version 2>&1 | cut -d "-" -f 2))"
   fi
 }
 getKubectlClientVersion() {
   if isCommandAvailable "kubectl" ; then
-    printToolVersion "${1}" "$(echo $(kubectl version --client | cut -d ":" -f 5 | cut -d "," -f 1 | sed 's/\"//g' | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(kubectl version --client 2>&1 | cut -d ":" -f 5 | cut -d "," -f 1 | sed 's/\"//g' | cut -d "v" -f 2))"
   fi
 }
 getMakeVersion() {
   if isCommandAvailable "make" ; then
-    printToolVersion "${1}" "$(echo $(make -v | grep -i 'Make' | cut -d " " -f 3))"
+    printToolVersion "${1}" "$(echo $(make -v 2>&1 | grep -i 'Make' | cut -d " " -f 3))"
   fi
 }
 getMavenVersion() {
   if isCommandAvailable "mvn" ; then
-    printToolVersion "${1}" "$(echo $(mvn -v | grep -i 'Apache Maven' | cut -d " " -f 3))"
+    printToolVersion "${1}" "$(echo $(mvn -v 2>&1 | grep -i 'Apache Maven' | cut -d " " -f 3))"
   fi
 }
 getMinikubeVersion() {
   if isCommandAvailable "minikube" ; then
-    printToolVersion "${1}" "$(echo $(minikube version | cut -d " " -f 3 | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(minikube version 2>&1 | cut -d " " -f 3 | cut -d "v" -f 2))"
   fi
 }
 getMongoDbVersion() {
   if isCommandAvailable "mongo" ; then
-    printToolVersion "${1}" "$(echo $(mongo -version | grep -i "MongoDB" | cut -d " " -f 4 | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(mongo -version 2>&1 | grep -i "MongoDB" | cut -d " " -f 4 | cut -d "v" -f 2))"
   fi
 }
 getNewmanVersion() {
   if isCommandAvailable "newman" ; then
-    printToolVersion "${1}" "$(echo $(newman --version))"
+    printToolVersion "${1}" "$(echo $(newman --version 2>&1))"
   fi
 }
 getNodeVersion() {
   if isCommandAvailable "node" ; then
-    printToolVersion "${1}" "$(echo $(node -v | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(node -v 2>&1 | cut -d "v" -f 2))"
   fi
 }
 getNpmVersion() {
   if isCommandAvailable "npm" ; then
-    printToolVersion "${1}" "$(echo $(npm -v))"
+    printToolVersion "${1}" "$(echo $(npm -v 2>&1))"
   fi
 }
 getPostgreSQLVersion() {
   if isCommandAvailable "psql" ; then
-    printToolVersion "${1}" "$(psql --version | cut -d " " -f 3)"
+    printToolVersion "${1}" "$(psql --version 2>&1 | cut -d " " -f 3)"
   fi
 }
 getPythonVersion() {
@@ -243,52 +243,52 @@ getPythonVersion() {
 }
 getRubyVersion() {
   if isCommandAvailable "ruby" ; then
-    printToolVersion "${1}" "$(echo $(ruby -v | cut -d " " -f 2))"
+    printToolVersion "${1}" "$(echo $(ruby -v 2>&1 | cut -d " " -f 2))"
   fi
 }
 getSpringBootCliVersion() {
   if isCommandAvailable "spring" ; then
-    printToolVersion "${1}" "$(echo $(spring --version | grep -i 'CLI' | cut -d " " -f 3 | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(spring --version 2>&1 | grep -i 'CLI' | cut -d " " -f 3 | cut -d "v" -f 2))"
   fi
 }
 getTerraformVersion() {
   if isCommandAvailable "terraform" ; then
-    printToolVersion "${1}" "$(echo $(terraform version | cut -d " " -f 3 | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(terraform version 2>&1 | cut -d " " -f 3 | cut -d "v" -f 2))"
   fi
 }
 getTypescriptVersion() {
   if isCommandAvailable "tsc" ; then
-    printToolVersion "${1}" "$(echo $(tsc -v | cut -d " " -f 2))"
+    printToolVersion "${1}" "$(echo $(tsc -v 2>&1 | cut -d " " -f 2))"
   fi
 }
 getVimVersion() {
   if isCommandAvailable "vim" ; then
-    printToolVersion "${1}" "$(echo $(vim --version | grep -i 'Vi IMproved' | cut -d " " -f 5))"
+    printToolVersion "${1}" "$(echo $(vim --version 2>&1 | grep -i 'Vi IMproved' | cut -d " " -f 5))"
   fi
 }
 getVueVersion() {
   if isCommandAvailable "npm" ; then
-    printToolVersion "${1}" "$(echo $(npm list vue | grep -i 'vue@' | cut -d "@" -f 2))"
+    printToolVersion "${1}" "$(echo $(npm list vue 2>&1 | grep -i 'vue@' | cut -d "@" -f 2))"
   fi
 }
 getVueCliVersion() {
   if isCommandAvailable "vue" ; then
-    printToolVersion "${1}" "$(echo $(vue --version))"
+    printToolVersion "${1}" "$(echo $(vue --version 2>&1))"
   fi
 }
 getYarnVersion() {
   if isCommandAvailable "yarn" ; then
-    printToolVersion "${1}" "$(echo $(yarn -v | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(yarn -v 2>&1 | cut -d "v" -f 2))"
   fi
 }
 getYeomanVersion() {
   if isCommandAvailable "yo" ; then
-    printToolVersion "${1}" "$(echo $(yo --version))"
+    printToolVersion "${1}" "$(echo $(yo --version 2>&1))"
   fi
 }
 getZshVersion() {
   if isCommandAvailable "zsh" ; then
-    printToolVersion "${1}" "$(echo $(zsh --version | grep -i 'zsh' | cut -d " " -f 2))"
+    printToolVersion "${1}" "$(echo $(zsh --version 2>&1 | grep -i 'zsh' | cut -d " " -f 2))"
   fi
 }
 

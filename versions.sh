@@ -216,6 +216,11 @@ getMongoDbVersion() {
     printToolVersion "${1}" "$(echo $(mongo -version 2>&1 | grep -i "MongoDB" | cut -d " " -f 4 | cut -d "v" -f 2))"
   fi
 }
+getNestJsVersion() {
+  if isCommandAvailable "nest" ; then
+    printToolVersion "${1}" "$(echo $(nest -v 2>&1))"
+  fi
+}
 getNewmanVersion() {
   if isCommandAvailable "newman" ; then
     printToolVersion "${1}" "$(echo $(newman --version 2>&1))"
@@ -319,6 +324,7 @@ getMakeVersion "make"
 getMavenVersion "maven"
 getMinikubeVersion "minikube"
 getMongoDbVersion "mongodb"
+getNestJsVersion "nestjs"
 getNewmanVersion "newman"
 getNodeVersion "node"
 getNpmVersion "npm"

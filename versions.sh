@@ -278,7 +278,7 @@ getVueVersion() {
 }
 getVueCliVersion() {
   if isCommandAvailable "vue" ; then
-    printToolVersion "${1}" "$(echo $(vue --version 2>&1))"
+    printToolVersion "${1}" "$(echo $(vue --version 2>&1 | cut -d " " -f 2))"
   fi
 }
 getYarnVersion() {

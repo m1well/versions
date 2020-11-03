@@ -37,6 +37,7 @@ Actually following tools are listed (alphabetically):<br>
 * Maven
 * Minikube
 * MongoDB
+* NativeScript
 * NestJS
 * Newman
 * Node

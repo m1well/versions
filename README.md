@@ -44,6 +44,7 @@ Actually following tools are listed (alphabetically):<br>
 * Npm
 * PostgreSQL
 * Python
+* Python3
 * Ruby
 * SpringBoot CLI
 * Terraform

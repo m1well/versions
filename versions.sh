@@ -251,6 +251,11 @@ getPythonVersion() {
     printToolVersion "${1}" "$(echo "$(python -V 2>&1)" | cut -d " " -f 2)"
   fi
 }
+getPython3Version() {
+  if isCommandAvailable "python3" ; then
+    printToolVersion "${1}" "$(echo "$(python3 -V 2>&1)" | cut -d " " -f 2)"
+  fi
+}
 getRubyVersion() {
   if isCommandAvailable "ruby" ; then
     printToolVersion "${1}" "$(echo $(ruby -v 2>&1 | cut -d " " -f 2))"
@@ -336,6 +341,7 @@ getNodeVersion "node"
 getNpmVersion "npm"
 getPostgreSQLVersion "postgresql"
 getPythonVersion "python"
+getPython3Version "python3"
 getRubyVersion "ruby"
 getSpringBootCliVersion "springboot cli"
 getTerraformVersion "terraform"

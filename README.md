@@ -20,6 +20,7 @@ Actually following tools are listed (alphabetically):<br>
 * Bash
 * CloudFoundry CLI
 * Curl
+* Deno
 * Docker
 * Fork
 * Git

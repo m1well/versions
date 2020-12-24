@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) twitter.m1well.de
 #date of creation       :20171130
-#date of last change    :20190305
-#version                :2.4.2
+#date of last change    :20201224
+#version                :2.5.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -129,6 +129,11 @@ getCloudFoundryCliVersion() {
 getCurlVersion() {
   if isCommandAvailable "curl" ; then
     printToolVersion "${1}" "$(echo $(curl -V 2>&1 | grep -i 'curl ' | cut -d " " -f 2))"
+  fi
+}
+getDenoVersion() {
+  if isCommandAvailable "deno" ; then
+    printToolVersion "${1}" "$(echo $(deno --version 2>&1 | grep -i 'deno'  | cut -d " " -f 2))"
   fi
 }
 getDockerVersion() {
@@ -317,6 +322,7 @@ getAwsCliVersion "aws cli"
 getBashVersion "bash"
 getCloudFoundryCliVersion "cloudfoundry cli"
 getCurlVersion "curl"
+getDenoVersion "deno"
 getDockerVersion "docker"
 getForkVersion "fork"
 getGitVersion "git"

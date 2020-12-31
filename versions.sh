@@ -236,6 +236,11 @@ getNewmanVersion() {
     printToolVersion "${1}" "$(echo $(newman --version 2>&1))"
   fi
 }
+getNginxVersion() {
+  if isCommandAvailable "nginx" ; then
+    printToolVersion "${1}" "$(echo "$(nginx -v 2>&1)" | cut -d "/" -f 2)"
+  fi
+}
 getNodeVersion() {
   if isCommandAvailable "node" ; then
     printToolVersion "${1}" "$(echo $(node -v 2>&1 | cut -d "v" -f 2))"
@@ -343,6 +348,7 @@ getMongoDbVersion "mongodb"
 getNativeScriptVersion "nativescript"
 getNestJsVersion "nestjs"
 getNewmanVersion "newman"
+getNginxVersion "nginx"
 getNodeVersion "node"
 getNpmVersion "npm"
 getPostgreSQLVersion "postgresql"

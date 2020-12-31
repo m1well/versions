@@ -41,6 +41,7 @@ Actually following tools are listed (alphabetically):<br>
 * NativeScript
 * NestJS
 * Newman
+* Nginx
 * Node
 * Npm
 * PostgreSQL

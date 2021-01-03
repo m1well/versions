@@ -34,6 +34,7 @@ Actually following tools are listed (alphabetically):<br>
 * JHipster
 * Jq
 * Kubectl Client
+* Logrotate
 * Make
 * Maven
 * Minikube

@@ -201,6 +201,11 @@ getKubectlClientVersion() {
     printToolVersion "${1}" "$(echo $(kubectl version --client 2>&1 | cut -d ":" -f 5 | cut -d "," -f 1 | sed 's/\"//g' | cut -d "v" -f 2))"
   fi
 }
+getLogrotateVersion() {
+  if isCommandAvailable "logrotate" ; then
+    printToolVersion "${1}" "$(echo "$(logrotate --version 2>&1)" | cut -d " " -f 2)"
+  fi
+}
 getMakeVersion() {
   if isCommandAvailable "make" ; then
     printToolVersion "${1}" "$(echo $(make -v 2>&1 | grep -i 'Make' | cut -d " " -f 3))"
@@ -341,6 +346,7 @@ getJavaVersion "java"
 getJHipsterVersion "jhipster"
 getJqVersion "jq"
 getKubectlClientVersion "kubectl client"
+getLogrotateVersion "logrotate"
 getMakeVersion "make"
 getMavenVersion "maven"
 getMinikubeVersion "minikube"

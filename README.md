@@ -22,6 +22,7 @@ Actually following tools are listed (alphabetically):<br>
 * Curl
 * Deno
 * Docker
+* Docker-compose
 * Fork
 * Git
 * Google Cloud SDK

@@ -141,6 +141,11 @@ getDockerVersion() {
     printToolVersion "${1}" "$(echo $(docker -v 2>&1 | grep -i 'Docker version' | cut -d " " -f 3 | sed 's/\,/ /g'))"
   fi
 }
+getDockerComposeVersion() {
+  if isCommandAvailable "docker-compose" ; then
+    printToolVersion "${1}" "$(echo $(docker-compose --version | cut -d " " -f 3 | cut -d "," -f 1))"
+  fi
+}
 getForkVersion() {
   if isCommandAvailable "fork" ; then
     printToolVersion "${1}" "$(echo $(fork --version 2>&1))"
@@ -334,6 +339,7 @@ getCloudFoundryCliVersion "cloudfoundry cli"
 getCurlVersion "curl"
 getDenoVersion "deno"
 getDockerVersion "docker"
+getDockerComposeVersion "docker-compose"
 getForkVersion "fork"
 getGitVersion "git"
 getGoogleCloudSdkVersion "google cloud sdk"

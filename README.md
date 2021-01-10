@@ -18,6 +18,7 @@ Actually following tools are listed (alphabetically):<br>
 * Atom
 * AWS CLI
 * Bash
+* Certbot
 * CloudFoundry CLI
 * Curl
 * Deno

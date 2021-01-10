@@ -121,6 +121,11 @@ getBashVersion() {
     printToolVersion "${1}" "$(echo $(bash --version 2>&1 | grep -i 'bash' | cut -d " " -f 4))"
   fi
 }
+getCertbotVersion() {
+  if isCommandAvailable "certbot" ; then
+    printToolVersion "${1}" "$(echo $(certbot --version 2>&1 | cut -d " " -f 2))"
+  fi
+}
 getCloudFoundryCliVersion() {
   if isCommandAvailable "cf" ; then
     printToolVersion "${1}" "$(echo $(cf -v 2>&1 | grep -i 'cf version' | cut -d " " -f 3))"
@@ -335,6 +340,7 @@ getApacheBenchVersion "apache bench"
 getAtomVersion "atom"
 getAwsCliVersion "aws cli"
 getBashVersion "bash"
+getCertbotVersion "certbot"
 getCloudFoundryCliVersion "cloudfoundry cli"
 getCurlVersion "curl"
 getDenoVersion "deno"

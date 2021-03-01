@@ -196,6 +196,11 @@ getJavaVersion() {
     printToolVersion "${1}" "$(echo $(java -version 2>&1 | grep -i 'version' | cut -d " " -f 3 | sed 's/\"/ /g'))"
   fi
 }
+getJenvVersion() {
+  if isCommandAvailable "jenv" ; then
+    printToolVersion "${1}" "$(echo $(jenv --version 2>&1 | cut -d " " -f 2))"
+  fi
+}
 getJHipsterVersion() {
   if isCommandAvailable "jhipster" ; then
     printToolVersion "${1}" "$(echo $(jhipster --version 2>&1 | cut -d " " -f 6))"
@@ -355,6 +360,7 @@ getGulpVersion "gulp"
 getHerokuVersion "heroku"
 getHomebrewVersion "homebrew"
 getJavaVersion "java"
+getJenvVersion "jenv"
 getJHipsterVersion "jhipster"
 getJqVersion "jq"
 getKubectlClientVersion "kubectl client"

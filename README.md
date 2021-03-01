@@ -33,6 +33,7 @@ Actually following tools are listed (alphabetically):<br>
 * Heroku
 * Homebrew
 * Java
+* Jenv
 * JHipster
 * Jq
 * Kubectl Client

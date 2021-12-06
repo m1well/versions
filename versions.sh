@@ -50,7 +50,7 @@ printEndLines() {
 printOsVersion() {
   if [ "${1}" != "-" ] ; then
     printf " - ${1} <"
-    spaces=$((${TAB}-${#1}-1))
+    local spaces=$((${TAB}-${#1}-1))
     for (( c=1; c<=${spaces}; c++ )); do
       printf "-"
     done
@@ -61,13 +61,14 @@ printOsVersion() {
   fi
 }
 printToolVersion() {
-  if isThisStringVersionNumber "${2}" ; then
+  local version="$(echo ${2} | tr -s ' ')"
+  if isThisStringVersionNumber "${version}" ; then
     printf " - ${1} <"
-    spaces=$((${TAB}-${#1}-1))
+    local spaces=$((${TAB}-${#1}-1))
     for (( c=1; c<=${spaces}; c++ )); do
       printf "-"
     done
-    printf "> ${2} -"
+    printf "> ${version} -"
     printf "${BR}"
   fi
 }
@@ -266,9 +267,19 @@ getNodeVersion() {
     printToolVersion "${1}" "$(echo $(node -v 2>&1 | cut -d "v" -f 2))"
   fi
 }
+getNoteplanCliVersion() {
+  if isCommandAvailable "np-cli" ; then
+    printToolVersion "${1}" "$(echo $(np-cli -v 2>&1 | cut -d "v" -f 2))"
+  fi
+}
 getNpmVersion() {
   if isCommandAvailable "npm" ; then
     printToolVersion "${1}" "$(echo $(npm -v 2>&1))"
+  fi
+}
+getNpxVersion() {
+  if isCommandAvailable "npx" ; then
+    printToolVersion "${1}" "$(echo $(npx -v 2>&1))"
   fi
 }
 getPostgreSQLVersion() {
@@ -374,7 +385,9 @@ getNestJsVersion "nestjs"
 getNewmanVersion "newman"
 getNginxVersion "nginx"
 getNodeVersion "node"
+getNoteplanCliVersion "noteplan cli"
 getNpmVersion "npm"
+getNpxVersion "npx"
 getPostgreSQLVersion "postgresql"
 getPythonVersion "python"
 getPython3Version "python3"

@@ -47,7 +47,9 @@ Actually following tools are listed (alphabetically):<br>
 * Newman
 * Nginx
 * Node
+* Noteplan CLI
 * Npm
+* Npx
 * PostgreSQL
 * Python
 * Python3

@@ -247,6 +247,11 @@ getNativeScriptVersion() {
     printToolVersion "${1}" "$(echo $(tns --version 2>&1))"
   fi
 }
+getNeovimVersion() {
+  if isCommandAvailable "nvim" ; then
+	  printToolVersion "${1}" "$(echo $(nvim --version | grep -i "NVIM" | cut -d " " -f 2 | cut -d "v" -f 2))"
+  fi
+}
 getNestJsVersion() {
   if isCommandAvailable "nest" ; then
     printToolVersion "${1}" "$(echo $(nest -v 2>&1))"
@@ -381,6 +386,7 @@ getMavenVersion "maven"
 getMinikubeVersion "minikube"
 getMongoDbVersion "mongodb"
 getNativeScriptVersion "nativescript"
+getNeovimVersion "neovim"
 getNestJsVersion "nestjs"
 getNewmanVersion "newman"
 getNginxVersion "nginx"

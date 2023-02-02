@@ -43,6 +43,7 @@ Actually following tools are listed (alphabetically):<br>
 * Minikube
 * MongoDB
 * NativeScript
+* Neovim
 * NestJS
 * Newman
 * Nginx

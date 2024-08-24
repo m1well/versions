@@ -14,6 +14,7 @@ This script. ;)<br>
 Actually following tools are listed (alphabetically):<br>
 * OS (Linux / Windows / macOS)
 * Angular CLI
+* Ansible
 * ApacheBench
 * Atom
 * AWS CLI

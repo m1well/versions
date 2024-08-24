@@ -102,6 +102,11 @@ getAngularCliVersion() {
     printToolVersion "${1}" "$(echo $(ng version 2>&1 | grep -i 'Angular CLI' | cut -d " " -f 3))"
   fi
 }
+getAnsibleVersion() {
+  if isCommandAvailable "ansible" ; then
+    printToolVersion "${1}" "$(echo $(ansible --version | head -n 1 | cut -d " " -f 3 | sed 's/]/ /g'))"
+  fi
+}
 getApacheBenchVersion() {
   if isCommandAvailable "ab" ; then
     printToolVersion "${1}" "$(echo $(ab -V 2>&1 | grep ApacheBench | cut -d " " -f 5))"
@@ -249,7 +254,7 @@ getNativeScriptVersion() {
 }
 getNeovimVersion() {
   if isCommandAvailable "nvim" ; then
-	  printToolVersion "${1}" "$(echo $(nvim --version | grep -i "NVIM" | cut -d " " -f 2 | cut -d "v" -f 2))"
+	  printToolVersion "${1}" "$(echo $(nvim --version | head -n 1 | cut -d "v" -f 2))"
   fi
 }
 getNestJsVersion() {
@@ -357,6 +362,7 @@ getZshVersion() {
 printStartLines
 getOsVersion
 getAngularCliVersion "angular cli"
+getAnsibleVersion "ansible"
 getApacheBenchVersion "apache bench"
 getAtomVersion "atom"
 getAwsCliVersion "aws cli"

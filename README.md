@@ -33,6 +33,7 @@ Actually following tools are listed (alphabetically):<br>
 * Gulp
 * Heroku
 * Homebrew
+* Hugo
 * Java
 * Jenv
 * JHipster
@@ -92,5 +93,5 @@ Thank you.<br>
 
 
 ## Copyright and License
-Copyright :copyright: 2018 Michael Wellner ([@m1well](http://www.twitter.m1well.de))<br>
+Copyright :copyright: 2025 Michael Wellner ([m1well](http://www.m1well.com))<br>
 Code released under the [MIT License](/LICENSE).<br>

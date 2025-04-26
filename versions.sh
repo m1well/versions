@@ -2,10 +2,10 @@
 ###
 #title                  :versions.sh
 #description            :This script provides your tool versions.
-#author                 :Michael Wellner (@m1well) twitter.m1well.de
+#author                 :Michael Wellner (@m1well) m1well.com
 #date of creation       :20171130
-#date of last change    :20201224
-#version                :2.5.0
+#date of last change    :20250426
+#version                :3.0.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -197,6 +197,11 @@ getHomebrewVersion() {
     printToolVersion "${1}" "$(echo $(brew -v 2>&1 | grep -i 'Homebrew ' | cut -d " " -f 2))"
   fi
 }
+getHugoVersion() {
+  if isCommandAvailable "hugo" ; then
+    printToolVersion "${1}" "$(echo $(hugo version | cut -d "+" -f 1 | cut -d " " -f 2 | cut -d "v" -f 2))"
+  fi
+}
 getJavaVersion() {
   if isCommandAvailable "java" ; then
     printToolVersion "${1}" "$(echo $(java -version 2>&1 | grep -i 'version' | cut -d " " -f 3 | sed 's/\"/ /g'))"
@@ -381,6 +386,7 @@ getGroovyVersion "groovy"
 getGulpVersion "gulp"
 getHerokuVersion "heroku"
 getHomebrewVersion "homebrew"
+getHugoVersion "hugo"
 getJavaVersion "java"
 getJenvVersion "jenv"
 getJHipsterVersion "jhipster"

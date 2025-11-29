@@ -53,6 +53,7 @@ Actually following tools are listed (alphabetically):<br>
 * Noteplan CLI
 * Npm
 * Npx
+* Nx
 * PostgreSQL
 * Python
 * Python3

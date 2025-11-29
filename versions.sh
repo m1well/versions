@@ -297,6 +297,11 @@ getNpxVersion() {
     printToolVersion "${1}" "$(echo $(npx -v 2>&1))"
   fi
 }
+getNxVersion() {
+  if isCommandAvailable "nx" ; then
+    printToolVersion "${1}" "$(echo $(nx --version | grep 'Global' | cut -d " " -f 3 | cut -d "v" -f 2))"
+  fi
+}
 getPostgreSQLVersion() {
   if isCommandAvailable "psql" ; then
     printToolVersion "${1}" "$(psql --version 2>&1 | cut -d " " -f 3)"
@@ -406,6 +411,7 @@ getNodeVersion "node"
 getNoteplanCliVersion "noteplan cli"
 getNpmVersion "npm"
 getNpxVersion "npx"
+getNxVersion "nx"
 getPostgreSQLVersion "postgresql"
 getPythonVersion "python"
 getPython3Version "python3"

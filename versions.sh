@@ -10,8 +10,6 @@
 #notes                  :it would be most suitable to create an alias
 ###
 
-set -eu
-
 ### constants ###
 BR="\n"
 FONT_CYAN="\033[0;96m"
@@ -22,7 +20,9 @@ HEADER="################# versions (alphabetically) #################"
 
 ### helper ###
 isCommandAvailable () {
-  if [[ -x "$(command -v ${1})" ]] ; then return 0 ; fi
+  if command -v "${1}" >/dev/null 2>&1; then
+    return 0
+  fi
   return 1
 }
 isThisStringVersionNumber() {
@@ -222,9 +222,9 @@ getJqVersion() {
     printToolVersion "${1}" "$(echo $(jq --version 2>&1 | cut -d "-" -f 2))"
   fi
 }
-getKubectlClientVersion() {
+getKubectlVersion() {
   if isCommandAvailable "kubectl" ; then
-    printToolVersion "${1}" "$(echo $(kubectl version --client 2>&1 | cut -d ":" -f 5 | cut -d "," -f 1 | sed 's/\"//g' | cut -d "v" -f 2))"
+    printToolVersion "${1}" "$(echo $(kubectl version --client 2>&1 | grep 'Client Version' | cut -d " " -f 3 | cut -d "v" -f 2))"
   fi
 }
 getLogrotateVersion() {
@@ -295,6 +295,11 @@ getNpmVersion() {
 getNpxVersion() {
   if isCommandAvailable "npx" ; then
     printToolVersion "${1}" "$(echo $(npx -v 2>&1))"
+  fi
+}
+getNvmVersion() {
+  if isCommandAvailable "nvm" ; then
+    printToolVersion "${1}" "$(echo $(nvm -v))"
   fi
 }
 getNxVersion() {
@@ -396,7 +401,7 @@ getJavaVersion "java"
 getJenvVersion "jenv"
 getJHipsterVersion "jhipster"
 getJqVersion "jq"
-getKubectlClientVersion "kubectl client"
+getKubectlVersion "kubectl"
 getLogrotateVersion "logrotate"
 getMakeVersion "make"
 getMavenVersion "maven"
@@ -411,6 +416,7 @@ getNodeVersion "node"
 getNoteplanCliVersion "noteplan cli"
 getNpmVersion "npm"
 getNpxVersion "npx"
+getNvmVersion "nvm"
 getNxVersion "nx"
 getPostgreSQLVersion "postgresql"
 getPythonVersion "python"

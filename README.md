@@ -38,7 +38,7 @@ Actually following tools are listed (alphabetically):<br>
 * Jenv
 * JHipster
 * Jq
-* Kubectl Client
+* Kubectl
 * Logrotate
 * Make
 * Maven
@@ -53,6 +53,7 @@ Actually following tools are listed (alphabetically):<br>
 * Noteplan CLI
 * Npm
 * Npx
+* Nvm
 * Nx
 * PostgreSQL
 * Python
@@ -94,5 +95,5 @@ Thank you.<br>
 
 
 ## Copyright and License
-Copyright :copyright: 2025 Michael Wellner ([m1well](http://www.m1well.com))<br>
+Copyright :copyright: 2026 Michael Wellner ([m1well](http://www.m1well.com))<br>
 Code released under the [MIT License](/LICENSE).<br>

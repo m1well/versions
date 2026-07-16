@@ -4,8 +4,8 @@
 #description            :This script provides your tool versions.
 #author                 :Michael Wellner (@m1well) m1well.com
 #date of creation       :20171130
-#date of last change    :20250426
-#version                :3.0.0
+#date of last change    :20260718
+#version                :3.1.0
 #usage                  :versions.sh
 #notes                  :it would be most suitable to create an alias
 ###
@@ -130,6 +130,11 @@ getBashVersion() {
 getCertbotVersion() {
   if isCommandAvailable "certbot" ; then
     printToolVersion "${1}" "$(echo $(certbot --version 2>&1 | cut -d " " -f 2))"
+  fi
+}
+getClaudeCodeVersion() {
+  if isCommandAvailable "claude" ; then
+    printToolVersion "${1}" "$(echo $(claude --version 2>&1 | cut -d " " -f 1))"
   fi
 }
 getCloudFoundryCliVersion() {
@@ -383,6 +388,7 @@ getAtomVersion "atom"
 getAwsCliVersion "aws cli"
 getBashVersion "bash"
 getCertbotVersion "certbot"
+getClaudeCodeVersion "claude code"
 getCloudFoundryCliVersion "cloudfoundry cli"
 getCurlVersion "curl"
 getDenoVersion "deno"
@@ -432,6 +438,9 @@ getYarnVersion "yarn"
 getYeomanVersion "yeoman"
 getZshVersion "zsh"
 printEndLines
+
+### cleanup - relevant when sourced, so nothing leaks into the calling shell ###
+unset BR FONT_CYAN FONT_NONE TAB LINE HEADER
 
 ### end of script ###
 

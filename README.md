@@ -20,6 +20,7 @@ Actually following tools are listed (alphabetically):<br>
 * AWS CLI
 * Bash
 * Certbot
+* Claude Code
 * CloudFoundry CLI
 * Curl
 * Deno
